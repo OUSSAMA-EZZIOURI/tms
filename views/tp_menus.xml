@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- ================ MENU 0 ROOT MENU ================= -->
     <menuitem id="menu_tp"
         name="Transport Planning"
         sequence="290"
         web_icon="transport_planning,static/description/icon.png"
         groups="base.group_no_one"/>
 
-    <!-- ================ MENU 1 ================= -->
+    <!-- ================ MENU 1 : MASTER DATA ================= -->
     <menuitem id="menu_tp_master_data_root"
         name="Master Data"
         parent="menu_tp"
         sequence="99"
         groups="base.group_no_one"/>
 
+        <!-- ================ MENU 1/1 : TRUCK ================= -->
+        <record id="action_tp_truck_details" model="ir.actions.act_window">
+           <field name="name">Transport Truck</field>
+           <field name="res_model">transport.truck</field>
+           <field name="view_mode">tree,form</field>
+        </record>
 
-    <record id="action_tp_truck_details" model="ir.actions.act_window">
-       <field name="name">Transport Truck</field>
-       <field name="res_model">transport.truck</field>
-       <field name="view_mode">tree,form</field>
-    </record>
+        <menuitem id="menu_tp_truck_details"
+            action="action_tp_truck_details"
+            parent="menu_tp_master_data_root"
+            sequence="1"
+            groups="base.group_no_one"/>
 
-    <menuitem id="menu_tp_truck_details"
-        action="action_tp_truck_details"
-        parent="menu_tp_master_data_root"
-        sequence="1"
-        groups="base.group_no_one"/>
+        <!-- ================ MENU 1/2 : FINAL DELIVERY POINT ================= -->
+        <record id="action_tp_fdp_details" model="ir.actions.act_window">
+           <field name="name">Final Delivery Point</field>
+           <field name="res_model">transport.fdp</field>
+           <field name="view_mode">tree,form</field>
+        </record>
 
-
+        <menuitem id="menu_tp_fdp_details"
+            action="action_tp_fdp_details"
+            parent="menu_tp_master_data_root"
+            sequence="2"
+            groups="base.group_no_one"/>
     <!-- ================ MENU 2 ================= -->
 
     <menuitem id="menu_tp_transport_plans_root"

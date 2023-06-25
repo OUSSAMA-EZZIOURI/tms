@@ -23,8 +23,8 @@ class TransportFDP(models.Model):
         "Destination country",
         ondelete="cascade",
         required=True,
-        help="Final destination country",
+        help="Destination country",
     )
 
-#    def name_get(self):
-#        return [(rec.id, rec.name + " [" + rec.country_id.code + "]") for rec in self]
+    def name_get(self):
+        return [(rec.id, rec.name + " [" + rec.country_id.code + "]") for rec in self]

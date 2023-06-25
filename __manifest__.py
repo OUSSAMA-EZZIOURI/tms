@@ -16,6 +16,7 @@
         'views/tp_menus.xml',
         'views/tp_truck_views.xml',
         'views/tp_departure_views.xml',
+        'views/tp_fdp_views.xml',
 #        'security/tp_security.xml',
         'security/ir.model.access.csv',
     ],

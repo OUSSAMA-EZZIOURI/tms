@@ -12,6 +12,7 @@
                 <field name="urgent_part" string="Urgent part ?"/>
                 <field name="date_exp_departure" string="Expected Departure Date"/>
                 <field name="date_departure" string="Departure Date"/>
+                <field name="status" string="Status"/>
             </tree>
         </field>
     </record>
@@ -22,6 +23,9 @@
         <field name="model">transport.departure</field>
         <field name="arch" type="xml">
         <form string="Departure">
+            <header>
+               <field name="status" widget="statusbar" statusbar_visible="draft,planned,on_site,loading,departed,departed_issue,delay,cancelled"/>
+            </header>
             <sheet>
                 <group string="Departure details">
                     <group>
@@ -30,6 +34,7 @@
                         <field name="urgent_part" string="Urgent part ?"/>
                         <field name="date_exp_departure" string="Expected Departure Date"/>
                         <field name="date_departure" string="Departure Date"/>
+                        <field name="status" string="Status"/>
                     </group>
                 </group>
             </sheet>

@@ -41,11 +41,6 @@ class TransportTruck(models.Model):
         required=True,
         help="The plate of the container",
     )
-    #    container_type = fields.Char(
-    #        "container_type",
-    #        required=True,
-    #        help="Container type",
-    #    )
     container_type = fields.Selection([('bache', 'Bâchée'), ('tolee', 'Tôlée'), ('van', 'Van'), ('minitir', 'Mini-tir')]
                                       , required=True,
                                       help="Container type")
@@ -61,5 +56,21 @@ class TransportTruck(models.Model):
         help="Transport Company name",
     )
 
-#    def name_get(self):
-#        return [(rec.id, rec.container_plate) for rec in self]
+    def name_get(self):
+        return [(rec.id, rec.container_plate) for rec in self]
+
+    @api.model
+    def create(self, vals):
+        # Modify the values before creating the record
+        vals['company_name'] = self.trans_company_id.name
+        return super(TransportTruck, self).create(vals)
+
+    def write(self, vals):
+        # Use the browse() method to retrieve the record
+        vals['company_name'] = self.env['res.partner'].browse(vals['trans_company_id']).name
+        return super(TransportTruck, self).write(vals)
+
+    @api.onchange('trans_company_id')
+    def _onchange_trans_company_id(self):
+        # Perform actions when field1 changes
+        self.company_name = self.trans_company_id.name
