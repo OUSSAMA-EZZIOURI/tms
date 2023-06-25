@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+transport_planning.access_transport_truck,access_transport_truck,transport_planning.model_transport_truck,base.group_user,1,1,1,0
+transport_planning.access_transport_departure,access_transport_departure,transport_planning.model_transport_departure,base.group_user,1,1,1,0
+transport_planning.access_transport_fdp,access_transport_fdp,transport_planning.model_transport_fdp,base.group_user,1,1,1,0

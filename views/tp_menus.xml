@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_tp"
+        name="Transport Planning"
+        sequence="290"
+        web_icon="transport_planning,static/description/icon.png"
+        groups="base.group_no_one"/>
+
+    <!-- ================ MENU 1 ================= -->
+    <menuitem id="menu_tp_master_data_root"
+        name="Master Data"
+        parent="menu_tp"
+        sequence="99"
+        groups="base.group_no_one"/>
+
+
+    <record id="action_tp_truck_details" model="ir.actions.act_window">
+       <field name="name">Transport Truck</field>
+       <field name="res_model">transport.truck</field>
+       <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_tp_truck_details"
+        action="action_tp_truck_details"
+        parent="menu_tp_master_data_root"
+        sequence="1"
+        groups="base.group_no_one"/>
+
+
+    <!-- ================ MENU 2 ================= -->
+
+    <menuitem id="menu_tp_transport_plans_root"
+        name="Transport Plans"
+        parent="menu_tp"
+        sequence="98"
+        groups="base.group_no_one"/>
+
+
+    <record id="action_tp_departures" model="ir.actions.act_window">
+       <field name="name">Departures</field>
+       <field name="res_model">transport.departure</field>
+       <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_tp_departures"
+        action="action_tp_departures"
+        parent="menu_tp_transport_plans_root"
+        sequence="1"
+        groups="base.group_no_one"/>
+
+</odoo>

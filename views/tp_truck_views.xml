@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Truck Tree View-->
+    <record id="truck_view_tree" model="ir.ui.view">
+        <field name="name">truck.tree</field>
+        <field name="model">transport.truck</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="container_plate" string="Container Plate"/>
+                <field name="container_type" string="Container Type" />
+                <field name="trans_company_id" string="Company" />
+            </tree>
+        </field>
+    </record>
+
+    <!--Truck Form View-->
+    <record id="truck_view_form" model="ir.ui.view">
+        <field name="name">transport.truck.form</field>
+        <field name="model">transport.truck</field>
+        <field name="arch" type="xml">
+        <form string="Truck">
+            <sheet>
+                <group string="Truck details">
+                    <group>
+                        <field name="container_plate" string="Container plate" />
+                        <field name="container_type" string="Container Type"/>
+                        <field name="trans_company_id" domain="[('is_company', '=', True)]"/>
+                        <field name="company_name" string="Company Name"/>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+        </field>
+    </record>
+</odoo>

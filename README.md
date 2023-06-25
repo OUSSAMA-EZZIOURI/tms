@@ -59,7 +59,11 @@ The Odoo Transport Management System module is an integrated solution designed t
 
 ## Support
 
+<<<<<<< HEAD
 If you encounter any issues or have questions, please open an issue on the [odoo-transport-flow-system](https://github.com/OUSSAMA-EZZIOURI/tms/issues) repository.
+=======
+If you encounter any issues or have questions, please open an issue on the [tms/issues] (https://github.com/OUSSAMA-EZZIOURI/tms/issues) repository.
+>>>>>>> 381eddc (Initial commit)
 
 ## Contributing
 

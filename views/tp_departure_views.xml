@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Departure Tree View-->
+    <record id="departure_view_tree" model="ir.ui.view">
+        <field name="name">transport.departure.tree</field>
+        <field name="model">transport.departure</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="container_id" string="Container Plate" />
+                <field name="fdp_id" string="Destination"/>
+                <field name="urgent_part" string="Urgent part ?"/>
+                <field name="date_exp_departure" string="Expected Departure Date"/>
+                <field name="date_departure" string="Departure Date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Departure Form View-->
+    <record id="departure_view_form" model="ir.ui.view">
+        <field name="name">transport.departure.form</field>
+        <field name="model">transport.departure</field>
+        <field name="arch" type="xml">
+        <form string="Departure">
+            <sheet>
+                <group string="Departure details">
+                    <group>
+                        <field name="container_id" string="Container Plate" />
+                        <field name="fdp_id" string="Final Destination"/>
+                        <field name="urgent_part" string="Urgent part ?"/>
+                        <field name="date_exp_departure" string="Expected Departure Date"/>
+                        <field name="date_departure" string="Departure Date"/>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+        </field>
+    </record>
+</odoo>
