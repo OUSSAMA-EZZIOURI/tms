@@ -36,18 +36,20 @@ class TransportDepartures(models.Model):
     date_exp_departure = fields.Date(
         "Expected Departure Date", required=True, help="Expected Date of departure"
     )
-    date_departure = fields.Date(
-        "Departure Date", help="The real Departure Date"
-    )
+    time_exp_departure = fields.Char(string="Expected Time of Departure", required=True)
+    date_departure = fields.Date("Departure Date", help="The real Departure Date" )
+    time_departure = fields.Char(string='Time of Departure')
     status = fields.Selection([('draft', 'Draft'), ('planned', 'Planned')
                                   , ('on_site', 'On site')
                                   , ('loading', 'Loading...'), ('departed', 'Departed')
                                   , ('departed_issue', 'Departed with remark')
                                   , ('cancelled', 'Cancelled'), ('delay', 'Delay')]
                               , required=True,
-                              readonly=True, copy=False,
+                              copy=False,
                               tracking=True, default='draft',
                               help="Status")
+    attachement= fields.Binary(string="Attachement")
+    fname_attachement= fields.Char(string="File name attachement")
 
     def name_get(self):
         return [(rec.id, rec.container_id.container_plate + " / " + rec.fdp_id.name) for rec in self]

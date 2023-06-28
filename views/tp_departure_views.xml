@@ -6,13 +6,17 @@
         <field name="name">transport.departure.tree</field>
         <field name="model">transport.departure</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-info="status=='planned'" decoration-danger="status=='delay'"
+            decoration-warning="status=='on_site'" decoration-success="status=='departed'"
+             decoration-muted="status=='cancelled'">
                 <field name="container_id" string="Container Plate" />
                 <field name="fdp_id" string="Destination"/>
                 <field name="urgent_part" string="Urgent part ?"/>
                 <field name="date_exp_departure" string="Expected Departure Date"/>
+                <field name="time_exp_departure" widget="float_time"/>
                 <field name="date_departure" string="Departure Date"/>
-                <field name="status" string="Status"/>
+                <field name="time_departure" widget="float_time"/>
+                <field name="status" />
             </tree>
         </field>
     </record>
@@ -33,8 +37,12 @@
                         <field name="fdp_id" string="Final Destination"/>
                         <field name="urgent_part" string="Urgent part ?"/>
                         <field name="date_exp_departure" string="Expected Departure Date"/>
-                        <field name="date_departure" string="Departure Date"/>
-                        <field name="status" string="Status"/>
+                        <field name="time_exp_departure" widget="float_time"/>
+                        <field name="date_departure" string="Departure Date" readonly="1" />
+                        <field name="time_departure" widget="float_time" readonly="1"/>
+                        <field name="status" string="Status" />
+                        <field name="attachement" filename="fname_attachement"/>
+                        <field name="fname_attachement" invisible="1" class="oe_inline oe_right"/>
                     </group>
                 </group>
             </sheet>
