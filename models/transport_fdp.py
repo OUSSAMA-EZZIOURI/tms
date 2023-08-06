@@ -18,6 +18,10 @@ class TransportFDP(models.Model):
         "name",
         help="Final Delivery Point",
     )
+    customer = fields.Char(
+        "customer",
+        help="Final customer",
+    )
     country_id = fields.Many2one(
         "res.country",
         "Destination country",

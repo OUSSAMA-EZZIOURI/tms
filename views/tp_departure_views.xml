@@ -6,17 +6,22 @@
         <field name="name">transport.departure.tree</field>
         <field name="model">transport.departure</field>
         <field name="arch" type="xml">
-            <tree decoration-info="status=='planned'" decoration-danger="status=='delay'"
-            decoration-warning="status=='on_site'" decoration-success="status=='departed'"
-             decoration-muted="status=='cancelled'">
+            <tree decoration-info="state=='planned'" decoration-danger="state=='delay'"
+            decoration-warning="state=='on_site'" decoration-success="state=='departed'"
+             decoration-muted="state=='cancelled'">
                 <field name="container_id" string="Container Plate" />
                 <field name="fdp_id" string="Destination"/>
                 <field name="urgent_part" string="Urgent part ?"/>
                 <field name="date_exp_departure" string="Expected Departure Date"/>
                 <field name="time_exp_departure" widget="float_time"/>
+                <field name="state" optional="show" widget="badge"
+                       decoration-success="state == 'departed'"
+                       decoration-warning="state == 'on_site' or state =='in_process'"
+                       decoration-danger="state == 'delay'"
+                       decoration-info="state == 'planned'" />
                 <field name="date_departure" string="Departure Date"/>
                 <field name="time_departure" widget="float_time"/>
-                <field name="status" />
+
             </tree>
         </field>
     </record>
@@ -28,7 +33,12 @@
         <field name="arch" type="xml">
         <form string="Departure">
             <header>
-               <field name="status" widget="statusbar" statusbar_visible="draft,planned,on_site,loading,departed,departed_issue,delay,cancelled"/>
+                <button name="action_set_as_planned" states="draft" string="Set as planned" type="object" class="oe_highlight" />
+                <button name="action_set_as_on_site" states="planned" string="Set as On-site" type="object" class="oe_highlight" />
+                <button name="action_set_as_in_process" states="on_site" string="Set as in process" type="object" class="oe_highlight" />
+                <button name="action_set_as_departed" states="in_process" string="Set as departed" type="object" class="oe_highlight" />
+                <button name="action_set_as_cancelled" states="draft,planned,on_site,in_process,departed,delay," string="Cancel" type="object" class="oe_highlight" />
+               <field name="state" widget="statusbar" statusbar_visible="draft,planned,on_site,in_process,departed,cancelled"/>
             </header>
             <sheet>
                 <group string="Departure details">
@@ -40,7 +50,7 @@
                         <field name="time_exp_departure" widget="float_time"/>
                         <field name="date_departure" string="Departure Date" readonly="1" />
                         <field name="time_departure" widget="float_time" readonly="1"/>
-                        <field name="status" string="Status" />
+                        <field name="state" string="State" />
                         <field name="attachement" filename="fname_attachement"/>
                         <field name="fname_attachement" invisible="1" class="oe_inline oe_right"/>
                     </group>

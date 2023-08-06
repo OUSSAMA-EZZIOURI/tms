@@ -7,6 +7,7 @@
         <field name="model">transport.truck</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="name" string="Name"/>
                 <field name="container_plate" string="Container Plate"/>
                 <field name="container_type" string="Container Type" />
                 <field name="trans_company_id" string="Company" />
@@ -23,9 +24,10 @@
             <sheet>
                 <group string="Truck details">
                     <group>
+                        <field name="name" string="Name"/>
                         <field name="container_plate" string="Container plate" />
                         <field name="container_type" string="Container Type"/>
-                        <field name="trans_company_id" domain="[('is_company', '=', True)]"/>
+                        <field name="trans_company_id" domain="[('is_transport_company', '=', True)]"/>
                         <field name="company_name" string="Company Name" invisible="1" />
                     </group>
                 </group>
