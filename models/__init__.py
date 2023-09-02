@@ -5,5 +5,6 @@
 # ----------------------------------------------------------
 
 from . import truck
+from . import transport_company
 from . import transport_departure
 from . import transport_fdp

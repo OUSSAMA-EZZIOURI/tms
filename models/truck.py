@@ -16,22 +16,6 @@ class ContainerType(models.Model):
     )
 
 
-class TransportCompany(models.Model):
-    _name = 'transport.company'
-    _inherit = 'res.company'
-    _description = "Transport Company"
-    is_transport_company = fields.Boolean(
-        "is_transport_company",
-        default='True',
-        help="Is it a transport company ?"
-    )
-    user_ids = fields.Many2many('res.users', 'transport_company_users_rel', 'cid', 'user_id', string='Accepted Users')
-    # channel_ids = fields.Many2many("mail.channel", "mail_channel_profile_partner", "partner_id", "channel_id",
-    #                                copy=False)
-    # meeting_ids = fields.Many2many('calendar.event', 'calendar_event_profile_res_partner_rel', 'res_partner_id',
-    #                                'calendar_event_id', string='Meetings', copy=False)
-
-
 class TransportTruck(models.Model):
     """Defines the trucks used for inbond or outbound"""
 
@@ -39,8 +23,8 @@ class TransportTruck(models.Model):
     _description = "Transport Truck"
     _order = "container_plate"
 
-    truck_plate = fields.Char(
-        "truck_plate",
+    name = fields.Char(
+        "name",
         help="The plate of the truck",
     )
     container_plate = fields.Char(
@@ -52,7 +36,7 @@ class TransportTruck(models.Model):
                                       , required=True,
                                       help="Container type")
     trans_company_id = fields.Many2one(
-        "res.partner",
+        "transport.company",
         "Transport Company",
         ondelete="cascade",
         required=True,
@@ -64,7 +48,7 @@ class TransportTruck(models.Model):
     )
 
     def name_get(self):
-        return [(rec.id, rec.container_plate) for rec in self]
+        return [(rec.id, rec.trans_company_id.name + " / " + rec.container_plate ) for rec in self]
 
     @api.model
     def create(self, vals):
@@ -74,7 +58,8 @@ class TransportTruck(models.Model):
 
     def write(self, vals):
         # Use the browse() method to retrieve the record
-        vals['company_name'] = self.env['res.partner'].browse(vals['trans_company_id']).name
+        #vals['company_name'] = self.env['transport.company'].browse(vals['trans_company_id']).name
+        vals['company_name'] = self.trans_company_id.name
         return super(TransportTruck, self).write(vals)
 
     @api.onchange('trans_company_id')

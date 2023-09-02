@@ -1,1 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+tms.access_transport_truck,access_transport_truck,tms.model_transport_truck,base.group_user,1,1,1,1
+tms.access_transport_departure,access_transport_departure,tms.model_transport_departure,base.group_user,1,1,1,1
+tms.access_transport_fdp,access_transport_fdp,tms.model_transport_fdp,base.group_user,1,1,1,1
+tms.access_transport_company,access_transport_company,tms.model_transport_company,base.group_user,1,1,1,1

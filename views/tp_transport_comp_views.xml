@@ -26,6 +26,7 @@
                 <label for="name"/>
                 <h1>
                     <field name="name" placeholder="e.g. My Company"/>
+                    <field name="is_transport_company" string="Transport company" />
                 </h1>
             </div>
             <notebook colspan="4">
