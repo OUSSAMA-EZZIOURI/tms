@@ -15,6 +15,19 @@
         sequence="99"
         groups="base.group_no_one"/>
 
+        <!-- ================ MENU 1/0 : TRANSPORT COMPANY ================= -->
+        <record id="action_tp_transport_comp_details" model="ir.actions.act_window">
+           <field name="name">Transport Company</field>
+           <field name="res_model">transport.company</field>
+           <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_tp_transport_comp_details"
+            action="action_tp_transport_comp_details"
+            parent="menu_tp_master_data_root"
+            sequence="0"
+            groups="base.group_no_one"/>
+
         <!-- ================ MENU 1/1 : TRUCK ================= -->
         <record id="action_tp_truck_details" model="ir.actions.act_window">
            <field name="name">Transport Truck</field>
@@ -43,7 +56,7 @@
     <!-- ================ MENU 2 ================= -->
 
     <menuitem id="menu_tp_transport_plans_root"
-        name="Transport Plans"
+        name="Transport Schedule"
         parent="menu_tp"
         sequence="98"
         groups="base.group_no_one"/>

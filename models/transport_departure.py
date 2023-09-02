@@ -18,9 +18,18 @@ class TransportDepartures(models.Model):
     _description = "Transport Departure"
     _order = "date_exp_departure"
 
+    def _default_container_id(self):
+        return self.env['transport.truck'].search([('container_plate', '=', '?')], limit=1).id
+
+    def _default_container_plate(self):
+        rec = self.env['transport.truck'].search([('container_plate', '=', '?')], limit=1)
+        return rec.container_plate
+
     container_id = fields.Many2one(
         "transport.truck",
         "Container",
+        index=True, ondelete='cascade',
+        default=_default_container_id,
         help="""The planned container for this departure""",
     )
     urgent_part = fields.Boolean(
@@ -52,4 +61,23 @@ class TransportDepartures(models.Model):
     fname_attachement= fields.Char(string="File name attachement")
 
     def name_get(self):
-        return [(rec.id, rec.container_id.container_plate + " / " + rec.fdp_id.name) for rec in self]
+        for rec in self:
+            if False == rec.container_id.container_plate:
+                print ("ducky is False")
+                print(self._default_container_plate())
+                print(self._default_container_id())
+                return [(self._default_container_id(), self._default_container_plate() + " / " + rec.fdp_id.name)]
+            else:
+                print("ducky is " + rec.container_id.container_plate)
+                return [(rec.id, rec.container_id.container_plate + " / " + rec.fdp_id.name)]
+
+
+    @api.model
+    def create(self, vals):
+        # Modify the values before creating the record
+        print(vals)
+        if False == vals['container_id']:
+            vals['container_id'] = self._default_container_id()
+        return super(TransportDepartures, self).create(vals)
+
+# return [(rec.id, rec.container_id.container_plate + " / " + rec.fdp_id.name) for rec in self]

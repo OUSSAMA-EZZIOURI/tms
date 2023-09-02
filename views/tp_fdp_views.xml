@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" string="Final Delivery Point"/>
+                <field name="customer" string="Final Customer"/>
                 <field name="country_id" string="Country" />
                 <!-- <field name="country_id.code" string="Company" /> -->
             </tree>
@@ -24,6 +25,7 @@
                 <group string="Final Delivery details">
                     <group>
                         <field name="name" string="Final Delivery Point"/>
+                        <field name="customer" string="Final Customer"/>
                         <field name="country_id" string="Country" />
                     </group>
                 </group>

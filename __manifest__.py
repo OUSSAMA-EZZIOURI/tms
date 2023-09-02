@@ -1,7 +1,7 @@
 # See LICENSE file for full copyright and licensing details.
 {
     "name": "Transport Management System",
-    "version": "Beta",
+    "version": "Beta for Odoo15",
     "author": "EZZIOURI Oussama",
     "website": "http://www.leoni.com",
     "category": "Transport",
@@ -17,6 +17,7 @@
         'views/tp_truck_views.xml',
         'views/tp_departure_views.xml',
         'views/tp_fdp_views.xml',
+        'views/tp_transport_comp_views.xml',
 #        'security/tp_security.xml',
         'security/ir.model.access.csv',
     ],
